@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  nginx:
+    image: probely/nginx:latest
+    ports:
+    - "80:80"
+    - "443:443"
+    cap_drop:
+    - ALL
+    cap_add:
+    - CHOWN
+    - DAC_OVERRIDE
+    - SETGID
+    - SETUID
+    - NET_BIND_SERVICE
+    volumes:
+    - letsencrypt-conf:/etc/letsencrypt
+    - letsencrypt-web:/var/www/letsencrypt
+    - nginx-hosts:/etc/nginx/letsencrypt.conf.d
+  tls-controller:
+    image: probely/tls-controller:latest
+    cap_drop:
+    - ALL
+    environment:
+    - PROXY_BACKEND_HOSTS
+    - TLS_CIPHER_SUITES
+    - LETSENCRYPT_EMAIL
+    volumes:
+    - letsencrypt-conf:/etc/letsencrypt
+    - letsencrypt-web:/var/www/letsencrypt
+    - nginx-hosts:/tls-controller/var/config
+
+volumes:
+  letsencrypt-conf:
+  letsencrypt-web:
+  nginx-hosts:

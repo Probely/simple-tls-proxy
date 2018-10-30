@@ -1,0 +1,13 @@
+# At this itme, there is still no official Nginx docker image supporting
+# TLS 1.3. Eventually this Dockerfile will replace the currently used one.
+
+FROM nginx:mainline-alpine
+
+ADD config/conf.d/default.conf /etc/nginx/conf.d
+ADD config/nginx.conf /etc/nginx
+ADD entrypoint.sh /
+
+RUN chmod +x /entrypoint.sh
+
+CMD ["nginx", "-g", "daemon off;"]
+ENTRYPOINT ["/entrypoint.sh"]

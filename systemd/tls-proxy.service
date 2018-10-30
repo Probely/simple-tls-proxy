@@ -1,0 +1,17 @@
+[Unit]
+Description=Simple TLS Proxy
+After=docker.service network-online.target
+Requires=docker.service network-online.target                                            
+[Service]
+WorkingDirectory=/etc/tls-proxy
+Restart=always
+RestartSec=60
+
+ExecStartPre=-/usr/bin/docker-compose pull
+ExecStart=/usr/bin/docker-compose up nginx
+ExecStop=/usr/bin/docker-compose down
+ExecReload=/usr/bin/docker-compose up nginx
+
+[Install]
+WantedBy=multi-user.target
+

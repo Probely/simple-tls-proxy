@@ -1,0 +1,11 @@
+[Unit]
+Description=Periodically updates TLS Proxy configurations
+
+Requires=tls-proxy.service
+After=tls-proxy.service
+
+[Timer]
+OnCalendar=*:0/1
+
+[Install]
+WantedBy=timers.target

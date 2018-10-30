@@ -1,0 +1,8 @@
+[Unit]
+Description=TLS Proxy Controller
+
+[Service]
+WorkingDirectory=/etc/tls-proxy
+Type=oneshot
+EnvironmentFile=/etc/tls-proxy/system.env
+ExecStart=/bin/sh -c "docker-compose run --rm tls-controller | grep -i 'reload is required' && echo 'Will reload Nginx...' && (docker-compose top | grep nginx\: | awk '{print $2}' | xargs kill -HUP) || exit 0"
