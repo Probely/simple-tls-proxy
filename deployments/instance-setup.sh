@@ -26,14 +26,14 @@ yum -q -y update || true
 CENTOS_RELEASE=$(rpm -q --queryformat '%{VERSION}' centos-release)
 
 rpm --import "/etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-$CENTOS_RELEASE" || true
-yum -q -y --nogpgcheck install "https://dl.fedoraproject.org/pub/epel/epel-release-latest-${CENTOS_RELEASE}.noarch.rpm" || true
-rpm --import "/etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-${CENTOS_RELEASE}" || true
+yum -q -y --nogpgcheck install "https://dl.fedoraproject.org/pub/epel/epel-release-latest-$CENTOS_RELEASE.noarch.rpm" || true
+rpm --import "/etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-$CENTOS_RELEASE" || true
 yum -q -y install chrony git make \
 	net-tools yum-utils \
 	lsof \
 	pv ntpdate vim \
 	lynx wget unzip bind-utils || true
-yum -q -y --nogpgcheck install "https://centos${CENTOS_RELEASE}.iuscommunity.org/ius-release.rpm" || true
+yum -q -y --nogpgcheck install "https://centos$CENTOS_RELEASE.iuscommunity.org/ius-release.rpm" || true
 rpm --import "/etc/pki/rpm-gpg/IUS-COMMUNITY-GPG-KEY" || true
 
 # Docker

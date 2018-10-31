@@ -1,5 +1,5 @@
 data "template_file" "setup_script" {
-  template = "../instance-setup.sh"
+  template = "${file("../instance-setup.sh")}"
 
   vars {
     letsencrypt_email   = "${var.letsencrypt_email}"
@@ -8,8 +8,8 @@ data "template_file" "setup_script" {
   }
 }
 
-resource "google_compute_instance" "proxy" {
-  name         = "tls-proxy"
+resource "google_compute_instance" "playground" {
+  name         = "tls-proxy-playground"
   machine_type = "f1-micro"
   zone         = "${var.default_zone}"
 

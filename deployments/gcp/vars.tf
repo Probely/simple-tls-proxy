@@ -4,12 +4,10 @@ variable "project_id" {
 
 variable "default_region" {
   description = "The default GCP region to use"
-  default     = "europe-west4"
 }
 
 variable "default_zone" {
   description = "The default GCP zone to use"
-  default     = "europe-west4-a"
 }
 
 variable "letsencrypt_email" {
