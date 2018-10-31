@@ -12,6 +12,7 @@ docker-push: docker
 
 install:
 	mkdir -p $(INSTALL_PATH)
+	chmod 0700 $(INSTALL_PATH)
 	grep ^export deployments/stand-alone/*.env | cut -d ' ' -f 2- > $(INSTALL_PATH)/system.env
 	cp deployments/stand-alone/docker-compose.yml $(INSTALL_PATH)/
 	cp systemd/* /etc/systemd/system
