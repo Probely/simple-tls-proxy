@@ -4,6 +4,8 @@ simple-tls-proxy is an Nginx-based TLS reverse proxy container with modern TLS s
 
 It can can be placed in front of an existing HTTP website to enable HTTPS functionality with, hopefully, minimal hassle. You can think of it as a (limited) TLS terminator. You are free to change the configuration to better suit your needs, of course.
 
+![Network architecture overview](/images/architecture.png)
+
 We provide two Terraform configurations that will automatically create the required cloud infrastructure and deploy the TLS reverse proxy. This way, you can easily try out the TLS configurations on AWS or GCP.
 
 We also detail the manual steps required to run the examples on a stand-alone virtual machine. This assumes that the VM has an assigned public IP, and is reachable on ports 80 and 443. 
@@ -34,8 +36,8 @@ With the exception of the stand-alone example, familiarity with AWS or GCP is re
 ## Requirements
 
 This setup needs a dedicated virtual machine with the following requirements:
-  * Docker;
-  * Docker Compose;
+  * [Docker](https://docs.docker.com/engine/installation/);
+  * [Docker Compose](https://docs.docker.com/compose/install/);
   * Systemd (available in most Linux distributions);
   * Public IP;
   * Public DNS hostname, pointing to the IP above;
@@ -77,10 +79,10 @@ If everything is configured correctly, you should see Let's Encrypt log entries 
 
 ## Requirements
 
-  * A working AWS account;
-  * Install the  AWS Command Line Interface (CLI);
-  * Configure the AWS CLI;
-  * Install Terraform.
+  * A working AWS [account](https://docs.docker.com/compose/install/);
+  * [Install](https://docs.aws.amazon.com/cli/latest/userguide/installing.html) the  AWS Command Line Interface (CLI);
+  * [Configure](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html) the AWS CLI;
+  * Install [Terraform](https://www.terraform.io/intro/getting-started/install.html).
 
 ## Procedure
 
@@ -138,10 +140,10 @@ sudo journalctl -fu tls-proxy
 # Google Cloud Platform deployment
 
 ## Requirements
-  * A working GCP account;
-  * Install the Google Cloud SDK;
-  * Configure the Google Cloud SDK;
-  * Install Terraform.
+  * A working GCP [account](https://console.cloud.google.com);
+  * [Install](https://cloud.google.com/sdk/install) the Google Cloud SDK;
+  * [Configure](https://cloud.google.com/sdk/docs/initializing) the Google Cloud SDK;
+  * Install [Terraform](https://www.terraform.io/intro/getting-started/install.html).
 
 ## Procedure
 
